@@ -16,8 +16,8 @@
 
     <main>
         <section id='ipt-file'>
-            <section id="priFile">
-                <label for="pf" id="pl" onclick="getFile('primary');">Selecione o 1º Arquivo</label>
+            <section id="priFile" onclick="getFile(this);">
+                <label for="pf" id="pl">Selecione o 1º Arquivo</label>
                 <input id="pf" type="file" >
 
                 <label for="" id="pl-mini" class="mini"></label>
@@ -25,8 +25,8 @@
 
             <hr id="sep">
 
-            <section id="secFile">
-                <label for="sf" id="sl" onclick="getFile('second');">Selecione o 2º Arquivo</label>
+            <section id="secFile" onclick="getFile(this);">
+                <label for="sf" id="sl">Selecione o 2º Arquivo</label>
                 <input id="sf" type="file" >
 
                 <label for="" id="sl-mini" class="mini"></label>

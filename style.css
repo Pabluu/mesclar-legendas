@@ -55,6 +55,7 @@ label:hover {
 label[class='mini'] {
     font-size: 12px;
     text-align: center;
+    height: 1rem;
     width: 100%;
 }
 
@@ -94,4 +95,5 @@ button:hover {
     flex-direction: column;
     height: 150px;
     justify-content: space-evenly;
+    row-gap: 10px;
 }
