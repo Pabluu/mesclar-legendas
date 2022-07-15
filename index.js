@@ -1,40 +1,27 @@
-// primeiro input
-let primLabel = document.getElementById('pl');
-let plMini = document.getElementById('pl-mini');
-let primFile = document.getElementById('pf');
+function getFile(opcao) {
+    let label, miniLabel, arquivo;
 
-primLabel.addEventListener('click', function () {
-    primFile.click();
-})
-
-primFile.addEventListener('change', function () {
-    let nomeArquivo = '';
-    if (primFile.files.length > 0) {
-        nomeArquivo = primFile.files[0].name;
+    // primeiro input
+    if (opcao === 'primary') {
+        label = document.getElementById('pl');
+        miniLabel = document.getElementById('pl-mini');
+        arquivo = document.getElementById('pf');
+    } else {
+        // segundo input
+        label = document.getElementById('sl');
+        miniLabel = document.getElementById('sl-mini');
+        arquivo = document.getElementById('sf');
     }
 
-    plMini.innerHTML = removeExtensao(nomeArquivo);
-})
+    arquivo.addEventListener('change', function () {
+        let nomeArquivo = '';
+        if (arquivo.files.length > 0) {
+            nomeArquivo = arquivo.files[0].name;
+        }
 
-
-// segundo input
-let secLabel = document.getElementById('sl');
-let slMini = document.getElementById('sl-mini');
-let secFile = document.getElementById('sf');
-
-secLabel.addEventListener('click', function () {
-    secFile.click();
-})
-
-secFile.addEventListener('change', function () {
-    let nomeArquivo = '';
-    if (secFile.files.length > 0) {
-        nomeArquivo = secFile.files[0].name;
-    }
-
-    slMini.innerHTML = removeExtensao(nomeArquivo);
-})
-
+        miniLabel.innerHTML = removeExtensao(nomeArquivo);
+    })
+}
 
 function removeExtensao(file){
     let fileWithoutExtension = file.replace(/\.[^/.]+$/, "");
