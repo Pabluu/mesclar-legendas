@@ -31,10 +31,11 @@ h1 {
     margin: 25px;
     font-size: 40px;
     text-transform: uppercase;
+    text-decoration-color: transparent;
 }
 
 h1:hover {
-    transition: .4s;
+    transition: text-decoration .4s;
     text-decoration: underline #080f6150;
 }
 
@@ -49,7 +50,7 @@ label {
 label:hover {
     border-radius: 5px;
     background-color: #080f6150;
-    transition: .4s;
+    transition: .35s;
 }
 
 label[class='mini'] {
