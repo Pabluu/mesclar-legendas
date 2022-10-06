@@ -10,5 +10,6 @@ function getFile(pai) {
 
         // remove a extensao do arquivo(replace)
         miniLabel.innerHTML = nomeArquivo.replace(/\.[^/.]+$/, "");
+        miniLabel.style.backgroundColor = "#080f6115";
     })
 }
