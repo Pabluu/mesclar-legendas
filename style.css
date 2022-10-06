@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
+
+:root{
+    --a: #080f61;
+    --b: #080f6115;
+    --d: #080f6125;
+    --d: #080f6150;
+    --e: #080f6175;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -24,4 +33,40 @@ main {
     width: 400px;
     height: 300px;
     margin: 0;
+}
+
+input[type='file']{
+    display: none;
+}
+
+
+
+label[for='input']{
+    font-size: 24px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color .2s linear;
+}
+
+label[for='input']:hover{
+    background-color: var(--d);
+}
+
+
+.label-input{
+    display: flex;
+    justify-content: space-between;
+    min-width: 200px;
+}
+
+.label-input label{
+    width: 100%;
+}
+
+
+.label-input button{
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
 }
