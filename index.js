@@ -1,6 +1,11 @@
+let inputFile = null;
+let miniLabel = null;
+
 function getFile(pai) {
-    const inputFile = pai.children[1];
-    const miniLabel = pai.children[2];
+    inputFile = pai.children[1];
+    miniLabel = pai.children[2];
+
+    miniLabel.style.backgroundColor = 'white';
 
     inputFile.addEventListener('change', function () {
         let nomeArquivo = '';
@@ -10,6 +15,9 @@ function getFile(pai) {
 
         // remove a extensao do arquivo(replace)
         miniLabel.innerHTML = nomeArquivo.replace(/\.[^/.]+$/, "");
-        miniLabel.style.backgroundColor = '#080f6140';
+
+        if (miniLabel.innerHTML !== '') {
+            miniLabel.style.backgroundColor = '#080f6140';
+        }
     })
 }

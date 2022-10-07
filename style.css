@@ -34,11 +34,6 @@ h1 {
     text-decoration-color: transparent;
 }
 
-h1:hover {
-    transition: text-decoration .4s;
-    text-decoration: underline #080f6150;
-}
-
 .secoes{
     display: flex;
     max-width: 400px;
