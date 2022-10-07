@@ -5,36 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivos TXT Para PDF</title>
+    <title>Mesclar PDF</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        <h1>Arquivos TXT Para PDF</h1>
+        <h1>Mesclar PDF</h1>
     </header>
 
     <main>
         <section id='ipt-file'>
-            <section id="priFile" onclick="getFile(this);">
+            <section id="priFile" class='secoes' onclick="getFile(this);">
                 <label for="pf" id="pl">Selecione o 1º Arquivo</label>
-                <input id="pf" type="file" >
+                <input id="pf" type="file" required >
 
                 <label for="" id="pl-mini" class="mini"></label>
             </section>
 
             <hr id="sep">
 
-            <section id="secFile" onclick="getFile(this);">
+            <section id="secFile" class='secoes' onclick="getFile(this);">
                 <label for="sf" id="sl">Selecione o 2º Arquivo</label>
-                <input id="sf" type="file" >
+                <input id="sf" type="file" required>
 
                 <label for="" id="sl-mini" class="mini"></label>
             </section>
         </section>
 
         <section id='btn'>
-            <button>Converter para Pdf</button>
+            <button class="button">mesclar</button>
         </section>
 
 
