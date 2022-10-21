@@ -13,7 +13,7 @@ function getFile(inputFile) {
     // removendo a extensao do arquivo
     miniLabel.innerHTML = nomeArquivo.replace(/\.[^/.]+$/, "");
 
-    // trocando o background
+    // alterando a cor de fundo
     if (miniLabel.innerHTML !== '') {
         miniLabel.style.backgroundColor = '#080f6140';
     }
