@@ -1,23 +1,22 @@
-let inputFile = null;
-let miniLabel = null;
-
-function getFile(pai) {
-    inputFile = pai.children[1];
-    miniLabel = pai.children[2];
+function getFile(inputFile) {
+    // pegando o irmão mais próximo
+    miniLabel = inputFile.nextElementSibling;
 
     miniLabel.style.backgroundColor = 'white';
 
-    inputFile.addEventListener('change', function () {
-        let nomeArquivo = '';
-        if (inputFile.files.length > 0) {
-            nomeArquivo = inputFile.files[0].name;
-        }
+    // obtendo nome do arquivo
+    let nomeArquivo = '';
+    if (inputFile.files.length > 0) {
+        nomeArquivo = inputFile.files[0].name;
+    }
 
-        // remove a extensao do arquivo(replace)
-        miniLabel.innerHTML = nomeArquivo.replace(/\.[^/.]+$/, "");
+    // removendo a extensao do arquivo
+    miniLabel.innerHTML = nomeArquivo.replace(/\.[^/.]+$/, "");
 
-        if (miniLabel.innerHTML !== '') {
-            miniLabel.style.backgroundColor = '#080f6140';
-        }
-    })
+    // trocando o background
+    if (miniLabel.innerHTML !== '') {
+        miniLabel.style.backgroundColor = '#080f6140';
+    }
+
+    
 }

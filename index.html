@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mesclar PDF</title>
+    <title>Mesclar Legendas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,18 +16,18 @@
 
     <main>
         <section id='ipt-file'>
-            <section id="priFile" class='secoes' onclick="getFile(this);">
+            <section id="priFile" class='secoes' >
                 <label for="pf" id="pl">Selecione o 1º Arquivo</label>
-                <input id="pf" type="file" accept=".srt" required >
+                <input id="pf" type="file" accept=".srt" required oninput="getFile(this)">
 
                 <label for="" id="pl-mini" class="mini"></label>
             </section>
 
             <hr id="sep">
 
-            <section id="secFile" class='secoes' onclick="getFile(this);">
+            <section id="secFile" class='secoes' >
                 <label for="sf" id="sl">Selecione o 2º Arquivo</label>
-                <input id="sf" type="file" required accept=".srt">
+                <input id="sf" type="file" required accept=".srt" oninput="getFile(this)">
 
                 <label for="" id="sl-mini" class="mini"></label>
             </section>
@@ -42,5 +42,4 @@
 
     <script src="index.js"></script>
 </body>
-
 </html>
