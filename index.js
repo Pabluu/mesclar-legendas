@@ -1,57 +1,21 @@
-function getFile(inputFile) {
-    // pegando o irmão mais próximo
-    miniLabel = inputFile.nextElementSibling;
+const express = require('express');
+const app = express();
+const { jsPDF } = require("jspdf"); // will automatically load the node version
 
-    miniLabel.style.backgroundColor = 'white';
+const doc = new jsPDF();
+doc.text("PABLO HENRIQUE DA SILVA CUNHA", 10, 10);
+doc.save("a4.pdf");
 
-    debugger
-    // obtendo nome do arquivo
-    let nameFile = '';
-    if (inputFile.files.length > 0) {
-        nameFile = getName(inputFile)
-        miniLabel.innerHTML = getNameWithoutName(nameFile);
-    }
 
-    // alterando a cor de fundo
-    if (miniLabel.innerHTML !== '') {
-        miniLabel.style.backgroundColor = '#080f6140';
-    }
+app.set('view engine', 'ejs');
+app.use(express.static('public/'));
 
-}
-
-// nome do arquivo
-function getName(inputFile) {
-    return inputFile.files[0].name;
-}
-
-// nome do arquivo SEM EXTENSÃO
-function getNameWithoutName(nameFile) {
-    return nameFile.replace(/\.[^/.]+$/, "");
-}
-
-let button = document.querySelector('button');
-let inputs = document.querySelectorAll('input');
-let conteudo = []
-
-inputs.forEach(input => {
-    input.addEventListener('change', function () {
-        let file = new FileReader();
-        getFile(input);
-
-        file.onload = () => {
-            conteudo.push(file.result)
-        }
-
-        file.readAsText(this.files[0]);
-    })
+app.get('/', (req, res) => {
+    res.render('index', {doc:doc});
 })
 
+// app.get()
 
-button.addEventListener('click', function () {
-    if (conteudo != '') {
-        // debugger
-        for (index in conteudo) {
-            console.log(index)
-        }
-    }
-})
+app.listen(8080, () => {
+    console.log("Servidor rodando\nhttp://localhost:8080")
+});

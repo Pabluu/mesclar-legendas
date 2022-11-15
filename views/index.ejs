@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesclar Legendas</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -29,53 +29,18 @@
             <section id="secFile" class='secoes'>
                 <label for="sf" id="sl">Selecione o 2º Arquivo</label>
                 <input id="sf" type="file" required accept=".srt">
-                <!-- oninput="getFile(this)" -->
 
                 <label for="" id="sl-mini" class="mini"></label>
             </section>
         </section>
 
         <section id='btn'>
-            <button class="button">mesclar</button>
+            <button onclick="gerarPDF();" class="button">mesclar</button>
         </section>
-
-
     </main>
 
-    <p id="text"></p>
-
-    <script src="index.js"></script>
 </body>
+
+<script src="js/index.js"></script>
 
 </html>
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Read Text File Tutorial</title>
-</head>
-
-<body>
-    <input type="file" name="inputFile" id="inputFile">
-    <br>
-    <pre id="output"></pre>
-
-    <script type="text/javascript">
-        document.getElementById('inputFile').addEventListener('change', function () {
-            var file = new FileReader();
-            file.onload = () => {
-                document.getElementById('output').textContent = file.result;
-            }
-            file.readAsText(this.files[0]);
-        });
-    </script>
-</body>
-
-</html> -->
