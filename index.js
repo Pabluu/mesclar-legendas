@@ -1,11 +1,56 @@
 import "./jspdf.js";
 const jsPDF = jspdf.jsPDF;
 
-function createFile() {
-  const doc = new jsPDF();
+function createFile(contentFile) {
+  const pdf = new jsPDF({
+    orientation: "p",
+    unit: "pt",
+    format: "a4",
+  });
 
-  doc.text("Hello world!", 10, 10);
-  doc.save("a4.pdf");
+  pdf.setFontSize(12);
+
+  let nameFile = prompt("Digite o nome do arquivo.");
+  let fontSize = pdf.getFontSize();
+  let [marginX, marginY] = [10, 10 + fontSize];
+  let text = "";
+  let tamanhoA4 = pdf.getPageHeight() - fontSize * 2;
+  const maiorNumero = maxLenght(contentFile);
+
+  for (let content = 0; content < maiorNumero; content++) {
+    for (let index = 0; index < 2; index++) {
+      text = contentFile[index][content];
+      if (text == undefined || text == null) {
+        continue;
+      }
+      // debugger
+
+      console.log(marginX);
+      if (marginY >= tamanhoA4) {
+        pdf.addPage();
+        [marginX, marginY] = [10, 10 + fontSize];
+      }
+
+      pdf.text(text, marginX, marginY);
+
+      marginY += pdf.getFontSize() + 1;
+    }
+    marginY += pdf.getFontSize() + 5;
+  }
+
+  pdf.save(`${nameFile}.pdf`);
+}
+
+function maxLenght(content) {
+  let max = 0;
+  let lenghtContent = 0;
+
+  for (let c in content) {
+    lenghtContent = Object.keys(content[c]).length;
+    max = lenghtContent > max ? lenghtContent : max;
+  }
+
+  return max;
 }
 
 let inputs = document.querySelectorAll("input");
@@ -63,24 +108,27 @@ function listToJson(list) {
       posicao += 1;
     }
   }
-  contentJson["lenght"] = posicao;
 
   return contentJson;
 }
 
 let button = document.querySelector("button");
-let arquivos = [];
 
 // evento de click no botão
 button.addEventListener("click", function () {
-  createFile();
+  let arquivos = {};
+  let posicao = 0;
   if (content != "") {
     for (let file of content) {
+      posicao = content.indexOf(file);
       file = file.replace(/^[0-9:, \->]{1,}$/gm, "");
       file = file.split(/[\n]{2,}/gm);
-      arquivos.push(listToJson(file));
+      file = file.map((item) => {
+        return item.replace("\n", " ");
+      });
+      arquivos[posicao] = listToJson(file);
     }
   }
-});
 
-export { createFile };
+  createFile(arquivos);
+});
