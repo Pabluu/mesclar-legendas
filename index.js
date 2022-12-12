@@ -41,7 +41,7 @@ function readFile(input) {
   fileReader.onload = () => {
     listSubtitle[chave] = fileReader.result;
   };
-  
+
   fileReader.readAsText(input.files[0]);
 }
 
@@ -69,19 +69,26 @@ function listToJson(list) {
   return contentJson;
 }
 
+// Função responsável por remover conteudos desnecessarios
+function extractFile(listSub) {
+  for (let chave in listSub) {
+    debugger;
+    file = listSub[chave];
+    file = file.replace(/^[0-9:, \->]{1,}$/gm, "");
+    file = file.split(/[\n]{2,}/gm);
+    file = file.map((item) => {
+      return item.replace("\n", " ");
+    });
+    contentSubtitle[chave] = listToJson(file);
+  }
+}
+
 button.addEventListener("click", () => {
   const lenghtSub = jsonLenght(listSubtitle);
   // mescla as legendas
   if (lenghtSub == 2) {
-    for (let chave in listSubtitle) {
-      file = listSubtitle[chave];
-      file = file.replace(/^[0-9:, \->]{1,}$/gm, "");
-      file = file.split(/[\n]{2,}/gm);
-      file = file.map((item) => {
-        return item.replace("\n", " ");
-      });
-      contentSubtitle[chave] = file
-    }
+    extractFile(listSubtitle);
+    insertHtml(contentSubtitle);
   } else if (lenghtSub == 1) {
     alert("Insira mais uma legenda");
   } else {
