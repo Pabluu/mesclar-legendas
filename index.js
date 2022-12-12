@@ -5,7 +5,7 @@ const contentSubtitle = { pf: undefined, sf: undefined };
 
 const inputs = document.querySelectorAll("input");
 const buttonMesclar = document.querySelector(".button-mesclar");
-
+let buttonPDF = '';
 
 // obtem o arquivo e insere na lista de arquivos
 inputs.forEach((input) => {
@@ -83,25 +83,37 @@ function extractFile(listSub) {
   }
 }
 
+// Responsavel por criar um botão para gerar o pdf
+function addButtonPDF(){
+  main.innerHTML += `<section id='btn'>
+  <button class="button-pdf">gerar pdf</button>
+  </section>`;
+
+  buttonPDF = document.querySelector(".button-pdf");
+}
+
 // função responsável por inserir o conteudo no html
 function insertHtml(contSub) {
   const main = document.querySelector("main");
-  main.innerHTML = '';
+  main.innerHTML = "";
   main.style.alignItems = "flex-start";
   main.style.maxWidth = "50rem";
   const pfLenght = jsonLenght(contSub["pf"]);
   const sfLenght = jsonLenght(contSub["sf"]);
   const maior = Math.max(pfLenght, sfLenght);
-  const divEnd = '</div>';
+  const divEnd = "</div>";
+
+  addButtonPDF();
 
   for (let index = 1; index <= maior; index++) {
     let tag = '<div class="content">';
     for (let chave in contSub) {
-      tag += `<p>${contSub[chave][index]}</\p>`
+      tag += `<p>${contSub[chave][index]}</\p>`;
     }
     main.innerHTML += tag + divEnd;
   }
 }
+
 
 buttonMesclar.addEventListener("click", () => {
   const lenghtSub = jsonLenght(listSubtitle);
@@ -114,5 +126,3 @@ buttonMesclar.addEventListener("click", () => {
     alert("Nenhuma legenda selecionada");
   }
 });
-
-
