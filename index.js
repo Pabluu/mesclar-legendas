@@ -72,7 +72,6 @@ function listToJson(list) {
 // Função responsável por remover conteudos desnecessarios
 function extractFile(listSub) {
   for (let chave in listSub) {
-    debugger;
     file = listSub[chave];
     file = file.replace(/^[0-9:, \->]{1,}$/gm, "");
     file = file.split(/[\n]{2,}/gm);
@@ -80,6 +79,25 @@ function extractFile(listSub) {
       return item.replace("\n", " ");
     });
     contentSubtitle[chave] = listToJson(file);
+  }
+}
+
+// função responsável por inserir o conteudo no html
+function insertHtml(contSub) {
+  const main = document.querySelector("main");
+  main.innerHTML = '';
+  main.style.alignItems = "flex-start";
+  const pfLenght = jsonLenght(contSub["pf"]);
+  const sfLenght = jsonLenght(contSub["sf"]);
+  const maior = Math.max(pfLenght, sfLenght);
+  const divEnd = '</div>';
+
+  for (let index = 1; index <= maior; index++) {
+    let tag = '<div class="content">';
+    for (let chave in contSub) {
+      tag += `<p>${contSub[chave][index]}</\p>`
+    }
+    main.innerHTML += tag + divEnd;
   }
 }
 
