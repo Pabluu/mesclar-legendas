@@ -107,21 +107,18 @@ hr#sep {
 }
 
 button {
-  height: 40px;
-  padding: 0 20px;
-  border: 1px solid #080f61;
   background-color: #080f6125;
   border-radius: 5px;
+  border: 1px solid #080f61;
   cursor: pointer;
+  height: 40px;
+  padding: 0 20px;
+  text-transform: uppercase;
   transition: 0.4s;
 }
 
 button:hover {
-  border: 1px solid #080f61;
   background-color: #080f6175;
+  border: 1px solid #080f61;
   transition: 0.4s;
-}
-
-.button {
-  text-transform: uppercase;
 }

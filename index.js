@@ -4,7 +4,8 @@ const listSubtitle = { pf: undefined, sf: undefined };
 const contentSubtitle = { pf: undefined, sf: undefined };
 
 const inputs = document.querySelectorAll("input");
-const button = document.querySelector("button");
+const buttonMesclar = document.querySelector(".button-mesclar");
+
 
 // obtem o arquivo e insere na lista de arquivos
 inputs.forEach((input) => {
@@ -102,7 +103,7 @@ function insertHtml(contSub) {
   }
 }
 
-button.addEventListener("click", () => {
+buttonMesclar.addEventListener("click", () => {
   const lenghtSub = jsonLenght(listSubtitle);
   if (lenghtSub == 2) {
     extractFile(listSubtitle);
