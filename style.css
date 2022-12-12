@@ -7,6 +7,10 @@
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
+:focus-visible {
+    outline: #080f61 auto 1px;
+}
+
 
 body {
     display: flex;

@@ -1,134 +1,90 @@
-import "./jspdf.js";
 const jsPDF = jspdf.jsPDF;
+const colorPurple = "#080f6140";
+const listSubtitle = { pf: undefined, sf: undefined };
+const contentSubtitle = { pf: undefined, sf: undefined };
 
-function createFile(contentFile) {
-  const pdf = new jsPDF({
-    orientation: "p",
-    unit: "pt",
-    format: "a4",
-  });
+const inputs = document.querySelectorAll("input");
+const button = document.querySelector("button");
 
-  pdf.setFontSize(12);
-
-  let nameFile = prompt("Digite o nome do arquivo.");
-  let fontSize = pdf.getFontSize();
-  let [marginX, marginY] = [10, 10 + fontSize];
-  let text = "";
-  let tamanhoA4 = pdf.getPageHeight() - fontSize * 2;
-  const maiorNumero = maxLenght(contentFile);
-
-  for (let content = 0; content < maiorNumero; content++) {
-    for (let index = 0; index < 2; index++) {
-      text = contentFile[index][content];
-      if (text == undefined || text == null) {
-        continue;
-      }
-      // debugger
-
-      console.log(marginX);
-      if (marginY >= tamanhoA4) {
-        pdf.addPage();
-        [marginX, marginY] = [10, 10 + fontSize];
-      }
-
-      pdf.text(text, marginX, marginY);
-
-      marginY += pdf.getFontSize() + 1;
-    }
-    marginY += pdf.getFontSize() + 5;
-  }
-
-  pdf.save(`${nameFile}.pdf`);
-}
-
-function maxLenght(content) {
-  let max = 0;
-  let lenghtContent = 0;
-
-  for (let c in content) {
-    lenghtContent = Object.keys(content[c]).length;
-    max = lenghtContent > max ? lenghtContent : max;
-  }
-
-  return max;
-}
-
-let inputs = document.querySelectorAll("input");
-let content = [];
+// obtem o arquivo e insere na lista de arquivos
 inputs.forEach((input) => {
   input.addEventListener("change", function () {
-    let file = new FileReader();
-    getFile(input);
-
-    file.onload = () => {
-      content.push(file.result);
-    };
-
-    file.readAsText(this.files[0]);
+    getFile(this);
+    readFile(this);
   });
 });
 
-function getFile(inputFile) {
-  // pegando o irmão mais próximo
-  let miniLabel = inputFile.nextElementSibling;
-
-  miniLabel.style.backgroundColor = "white";
-
-  // obtendo nome do arquivo
+// pegar o arquivo que foi selecionado pelo usuario
+function getFile(input) {
+  let miniLabel = input.nextElementSibling;
   let nameFile = "";
-  if (inputFile.files.length > 0) {
-    nameFile = getName(inputFile);
-    miniLabel.innerHTML = getNameWithoutExt(nameFile);
-  }
 
-  // alterando a cor de fundo
-  if (miniLabel.innerHTML !== "") {
-    miniLabel.style.backgroundColor = "#080f6140";
+  if (miniLabel.value !== "") {
+    if (input.files.length > 0) {
+      nameFile = getName(input);
+      miniLabel.innerHTML = nameFile;
+    }
   }
+  miniLabel.style.backgroundColor = colorPurple;
 }
 
-// nome do arquivo
+// nome do arquivo(sem extensão)
 function getName(inputFile) {
-  return inputFile.files[0].name;
+  let file = inputFile.files[0].name;
+  return file.replace(/\.[^/.]+$/, "");
+}
+// Lê o arquivo
+function readFile(input) {
+  let fileReader = new FileReader();
+  let chave = input.id;
+
+  fileReader.onload = () => {
+    listSubtitle[chave] = fileReader.result;
+  };
+  
+  fileReader.readAsText(input.files[0]);
 }
 
-// nome do arquivo SEM EXTENSÃO
-function getNameWithoutExt(nameFile) {
-  return nameFile.replace(/\.[^/.]+$/, "");
+// verificar o tamanho de acordo com os arquivos inseridos.
+function jsonLenght(json) {
+  let quantidade = 0;
+  for (let js in json) {
+    if (json[js]) {
+      quantidade++;
+    }
+  }
+  return quantidade;
 }
 
 // função responsável por transformar um array em Json ignorando conteudo vázios
 function listToJson(list) {
   let contentJson = {};
-  let posicao = 0;
 
-  for (let index in list) {
-    if (list[index]) {
-      contentJson[posicao] = list[index];
-      posicao += 1;
+  list.forEach((item, index) => {
+    if (item) {
+      contentJson[index] = item;
     }
-  }
+  });
 
   return contentJson;
 }
 
-let button = document.querySelector("button");
-
-// evento de click no botão
-button.addEventListener("click", function () {
-  let arquivos = {};
-  let posicao = 0;
-  if (content != "") {
-    for (let file of content) {
-      posicao = content.indexOf(file);
+button.addEventListener("click", () => {
+  const lenghtSub = jsonLenght(listSubtitle);
+  // mescla as legendas
+  if (lenghtSub == 2) {
+    for (let chave in listSubtitle) {
+      file = listSubtitle[chave];
       file = file.replace(/^[0-9:, \->]{1,}$/gm, "");
       file = file.split(/[\n]{2,}/gm);
       file = file.map((item) => {
         return item.replace("\n", " ");
       });
-      arquivos[posicao] = listToJson(file);
+      contentSubtitle[chave] = file
     }
+  } else if (lenghtSub == 1) {
+    alert("Insira mais uma legenda");
+  } else {
+    alert("Nenhuma legenda selecionada");
   }
-
-  createFile(arquivos);
 });

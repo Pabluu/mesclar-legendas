@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesclar Legendas</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -18,7 +17,7 @@
     <main>
         <section id='ipt-file'>
             <section id="priFile" class='secoes'>
-                <label for="pf" id="pl">Selecione o 1º Arquivo</label>
+                <label for="pf" id="pl" tabindex="0">Selecione o 1º Arquivo</label>
                 <input id="pf" type="file" accept=".srt" required>
                 <!-- oninput="getFile(this)" -->
 
@@ -29,7 +28,7 @@
             <hr id="sep">
 
             <section id="secFile" class='secoes'>
-                <label for="sf" id="sl">Selecione o 2º Arquivo</label>
+                <label for="sf" id="sl" tabindex="0">Selecione o 2º Arquivo</label>
                 <input id="sf" type="file" required accept=".srt">
                 <!-- oninput="getFile(this)" -->
 
@@ -38,14 +37,16 @@
         </section>
 
         <section id='btn'>
-            <button  class="button">mesclar</button>
+            <button class="button">mesclar</button>
             <!-- onclick="gerarPDF();" -->
         </section>
     </main>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script type="module" src="index.js">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script src="index.js">
 </script>
 
 </html>
