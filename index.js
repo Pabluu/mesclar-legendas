@@ -87,6 +87,7 @@ function insertHtml(contSub) {
   const main = document.querySelector("main");
   main.innerHTML = '';
   main.style.alignItems = "flex-start";
+  main.style.maxWidth = "50rem";
   const pfLenght = jsonLenght(contSub["pf"]);
   const sfLenght = jsonLenght(contSub["sf"]);
   const maior = Math.max(pfLenght, sfLenght);
@@ -103,7 +104,6 @@ function insertHtml(contSub) {
 
 button.addEventListener("click", () => {
   const lenghtSub = jsonLenght(listSubtitle);
-  // mescla as legendas
   if (lenghtSub == 2) {
     extractFile(listSubtitle);
     insertHtml(contentSubtitle);
@@ -113,3 +113,5 @@ button.addEventListener("click", () => {
     alert("Nenhuma legenda selecionada");
   }
 });
+
+
