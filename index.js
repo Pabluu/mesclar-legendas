@@ -5,7 +5,7 @@ const contentSubtitle = { pf: undefined, sf: undefined };
 
 const inputs = document.querySelectorAll("input");
 const buttonMesclar = document.querySelector(".button-mesclar");
-let buttonPDF = '';
+const main = document.querySelector("main");
 
 // obtem o arquivo e insere na lista de arquivos
 inputs.forEach((input) => {
@@ -84,17 +84,36 @@ function extractFile(listSub) {
 }
 
 // Responsavel por criar um botão para gerar o pdf
-function addButtonPDF(){
+function addButtonPDF() {
   main.innerHTML += `<section id='btn'>
-  <button class="button-pdf">gerar pdf</button>
+  <button class="button-pdf" onclick="gerarPDF();">gerar pdf</button>
   </section>`;
+}
 
-  buttonPDF = document.querySelector(".button-pdf");
+// função para gerar o pdf de acordo com main
+function gerarPDF() {
+  debugger;
+  let content = document.querySelector("main");
+  content.removeChild(content.firstChild);
+
+  let pdf = new jsPDF({
+    orientation: "p",
+    unit: "mm",
+    format: "a4",
+  });
+
+  pdf.html(content, {
+    callback: function (pdf) {
+      pdf.save(".pdf");
+    },
+    margin: 15,
+    width: 170,
+    windowWidth: 650,
+  });
 }
 
 // função responsável por inserir o conteudo no html
 function insertHtml(contSub) {
-  const main = document.querySelector("main");
   main.innerHTML = "";
   main.style.alignItems = "flex-start";
   main.style.maxWidth = "50rem";
@@ -102,7 +121,7 @@ function insertHtml(contSub) {
   const sfLenght = jsonLenght(contSub["sf"]);
   const maior = Math.max(pfLenght, sfLenght);
   const divEnd = "</div>";
-
+  
   addButtonPDF();
 
   for (let index = 1; index <= maior; index++) {
@@ -113,7 +132,6 @@ function insertHtml(contSub) {
     main.innerHTML += tag + divEnd;
   }
 }
-
 
 buttonMesclar.addEventListener("click", () => {
   const lenghtSub = jsonLenght(listSubtitle);
