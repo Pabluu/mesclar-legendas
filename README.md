@@ -15,6 +15,4 @@ Você só precisar rodar ele em seu navedor sem a necessidade de instalar algum 
 O projeto em si está finalizado, porém pode ser melhorado em vários sentidos, ficando a sua imaginação o que inovar.
 
 ## Infos adicionais
-`Desenvolvedor:` [Pablo Henrique](https://github.com/Pabluu/Pabluu)
-
-`Ultima alteração:` 12/12/2022
+`Desenvolvedor: [Pablo Henrique](https://github.com/Pabluu/Pabluu)`
