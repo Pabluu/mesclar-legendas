@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import Button from "./Button";
+import Header from "./Header";
+import SectionInput from "./SectionInput";
+import Section from "./Section";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Section id="ipt-file">
+          <SectionInput
+            id="priFile"
+            className="secoes"
+            textolabel="Selecione o 1º Arquivo"
+            idlabel="pl"
+            forlabel="pf"
+          />
+          <hr id="sep" />
+          <SectionInput
+            id="secFile"
+            className="secoes"
+            textolabel="Selecione o 2º Arquivo"
+            idlabel="sl"
+            forlabel="sf"
+          />
+        </Section>
+
+        <Section id="btn">
+          <Button className="button-mesclar"></Button>
+        </Section>
+      </main>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+      <script src="index.js"></script>
+    </>
   );
 }
 

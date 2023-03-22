@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesclar Legendas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- <header>
+    <h1>Mesclar Legendas</h1>
+  </header> -->
+
+  <main>
+    <section id='ipt-file'>
+      <section id="priFile" class='secoes'>
+        <label for="pf" id="pl" tabindex="0">Selecione o 1º Arquivo</label>
+        <input id="pf" type="file" accept=".srt" required>
+        <!-- oninput="getFile(this)" -->
+
+
+        <label for="" id="pl-mini" class="mini"></label>
+      </section> <!-- PART 1.1-->
+
+      <section id="secFile" class='secoes'>
+        <label for="sf" id="sl" tabindex="0">Selecione o 2º Arquivo</label>
+        <input id="sf" type="file" required accept=".srt">
+        <!-- oninput="getFile(this)" -->
+
+        <label for="" id="sl-mini" class="mini"></label>
+      </section> <!-- PART 1.2-->
+    </section> <!-- PART 01-->
+
+    <section id='btn'>
+      <button class="button-mesclar">mesclar</button>
+    </section> <!-- PART 02-->
+  </main>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<script src="index.js">
+</script>
+
+</html>
